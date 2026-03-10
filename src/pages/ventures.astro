@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Venture {
+  name: string;
+  years: string;
+  description: string;
+  detail: string;
+  tags: string[];
+}
+
+const active: Venture[] = [
+  {
+    name: 'IT Consulting & Managed Services',
+    years: '2019 – Present',
+    description: 'Independent IT consulting practice serving SMBs with infrastructure design, network architecture, cybersecurity hardening, and ongoing managed services.',
+    detail: 'The anchor of everything. Started as pure freelance, evolved into a structured practice with recurring clients across multiple countries. Profitable from month one.',
+    tags: ['Networking', 'Cloud', 'Security', 'SysAdmin'],
+  },
+  {
+    name: 'Mohtashim.io — Personal Brand & Writing',
+    years: '2024 – Present',
+    description: 'This site. Writing about IT, internet entrepreneurship, and what 8+ years of doing both actually teaches you. Not a product — a body of work.',
+    detail: 'The long game. Building a distinct voice in a space full of generic content. No course funnels. No sponsorships. Just consistent, honest publishing.',
+    tags: ['Content', 'Brand', 'Writing'],
+  },
+];
+
+const exited: Venture[] = [
+  {
+    name: 'E-Commerce Store #1 — Niche Physical Products',
+    years: '2018 – 2022',
+    description: 'Dropshipping-to-branded-product pipeline in a specific niche. Started badly (generic dropshipping), rebuilt with better unit economics, ran profitably for 2+ years before voluntary exit.',
+    detail: 'Exited on my own terms when the niche became crowded and margins compressed. Generated real revenue, paid for itself many times over, and taught me more about business fundamentals than anything else.',
+    tags: ['E-Commerce', 'Paid Ads', 'Product'],
+  },
+  {
+    name: 'Digital Info Product — Technical Guide Series',
+    years: '2020 – 2022',
+    description: 'A series of paid technical guides leveraging my IT expertise. Built and distributed to an audience of IT professionals and freelancers.',
+    detail: 'Validated, sold, and eventually wound down when supporting it conflicted with consulting growth. Exited cleanly. A solid proof of concept for monetizing expertise directly.',
+    tags: ['Info Product', 'Audience', 'IT'],
+  },
+];
+
+const failed: Venture[] = [
+  {
+    name: 'Joint Venture — Online Services Platform',
+    years: '2019',
+    description: 'A partnership with another operator to build a done-for-you online services brand. Fell apart due to misaligned incentives and no formal agreement.',
+    detail: 'The expensive lesson: enthusiasm is not a substitute for a contract. The failure cost me time, some capital, and a few months of focus. Taught me more about due diligence and partnership structures than any success could.',
+    tags: ['Partnership', 'Services'],
+  },
+  {
+    name: 'Unvalidated SaaS-Adjacent Product',
+    years: '2021',
+    description: 'Built a tool to solve a problem I assumed existed. Spent months building before talking to potential customers. Sales were almost zero at launch.',
+    detail: 'Classic build-first, validate-never mistake. The product worked — the market was indifferent. Shut it down after 60 days of trying to sell something with no validated demand. Never built anything without validation again.',
+    tags: ['SaaS', 'Product', 'Tech'],
+  },
+  {
+    name: 'Marketplace Arbitrage Play',
+    years: '2022',
+    description: 'An attempt to build scale in a competitive marketplace niche, betting on a window that turned out to be closing faster than anticipated.',
+    detail: 'Misjudged competition density and the platform\'s algorithm shift. Lost capital and six months of focus. The core mistake was entering a market where I had no information advantage.',
+    tags: ['E-Commerce', 'Arbitrage'],
+  },
+];
+
+const statusBadge = {
+  active:  'bg-emerald-400/10 text-emerald-400 border-emerald-400/20',
+  exited:  'bg-blue-400/10    text-blue-400    border-blue-400/20',
+  failed:  'bg-rose-400/10    text-rose-400    border-rose-400/20',
+};
+---
+
+<BaseLayout
+  title="Ventures"
+  description="The actual businesses I've started — categorised honestly as Active, Exited, or Failed."
+>
+  <div class="max-w-3xl mx-auto px-6 pt-20 pb-28">
+
+    <!-- Header -->
+    <header class="mb-16 reveal">
+      <p class="font-mono text-xs text-cyan-400 uppercase tracking-[0.22em] mb-4">Ventures</p>
+      <h1 class="text-3xl sm:text-4xl font-black text-slate-100 mb-5 tracking-tight">
+        What I've Built
+      </h1>
+      <p class="text-[17px] text-slate-500 leading-relaxed max-w-xl">
+        Every business I've started, organized by its current status.
+        Active, exited on my own terms, or failed outright.
+        No polish. Exactly as it happened.
+      </p>
+    </header>
+
+    <!-- ── ACTIVE ── -->
+    <section class="mb-18 reveal">
+      <div class="flex items-center gap-4 mb-8">
+        <span class={`font-mono text-xs uppercase tracking-[0.18em] px-3 py-1 rounded-full border ${statusBadge.active}`}>
+          Active
+        </span>
+        <div class="flex-1 h-px bg-slate-800/80"></div>
+      </div>
+
+      <div class="space-y-8">
+        {active.map(v => (
+          <div class="group p-6 border border-slate-800/70 rounded-xl hover:border-slate-700 transition-colors">
+            <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+              <h2 class="text-base font-bold text-slate-100 leading-snug">{v.name}</h2>
+              <span class="font-mono text-xs text-slate-600 shrink-0">{v.years}</span>
+            </div>
+            <p class="text-sm text-slate-400 leading-relaxed mb-3">{v.description}</p>
+            <p class="text-sm text-slate-600 leading-relaxed border-l border-slate-800 pl-4 italic">{v.detail}</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              {v.tags.map(t => (
+                <span class="font-mono text-[11px] text-slate-700 bg-slate-900/50 border border-slate-800 px-2 py-0.5 rounded">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ── EXITED ── -->
+    <section class="mb-18 reveal">
+      <div class="flex items-center gap-4 mb-8">
+        <span class={`font-mono text-xs uppercase tracking-[0.18em] px-3 py-1 rounded-full border ${statusBadge.exited}`}>
+          Exited
+        </span>
+        <div class="flex-1 h-px bg-slate-800/80"></div>
+      </div>
+
+      <div class="space-y-8">
+        {exited.map(v => (
+          <div class="group p-6 border border-slate-800/70 rounded-xl hover:border-slate-700 transition-colors">
+            <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+              <h2 class="text-base font-bold text-slate-200 leading-snug">{v.name}</h2>
+              <span class="font-mono text-xs text-slate-600 shrink-0">{v.years}</span>
+            </div>
+            <p class="text-sm text-slate-500 leading-relaxed mb-3">{v.description}</p>
+            <p class="text-sm text-slate-600 leading-relaxed border-l border-slate-800 pl-4 italic">{v.detail}</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              {v.tags.map(t => (
+                <span class="font-mono text-[11px] text-slate-700 bg-slate-900/50 border border-slate-800 px-2 py-0.5 rounded">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ── FAILED ── -->
+    <section class="reveal">
+      <div class="flex items-center gap-4 mb-8">
+        <span class={`font-mono text-xs uppercase tracking-[0.18em] px-3 py-1 rounded-full border ${statusBadge.failed}`}>
+          Failed
+        </span>
+        <div class="flex-1 h-px bg-slate-800/80"></div>
+      </div>
+
+      <div class="space-y-8">
+        {failed.map(v => (
+          <div class="group p-6 border border-slate-800/70 rounded-xl hover:border-slate-700 transition-colors">
+            <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+              <h2 class="text-base font-bold text-slate-400 leading-snug">{v.name}</h2>
+              <span class="font-mono text-xs text-slate-700 shrink-0">{v.years}</span>
+            </div>
+            <p class="text-sm text-slate-500 leading-relaxed mb-3">{v.description}</p>
+            <p class="text-sm text-slate-700 leading-relaxed border-l border-slate-800/60 pl-4 italic">{v.detail}</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              {v.tags.map(t => (
+                <span class="font-mono text-[11px] text-slate-800 bg-slate-900/40 border border-slate-800/60 px-2 py-0.5 rounded">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Bottom note -->
+    <div class="mt-20 pt-8 border-t border-slate-800/70 reveal">
+      <p class="text-sm text-slate-700 leading-relaxed max-w-lg">
+        This list will be updated as new ventures start or change status.
+        I'll go deeper on each one in the <a href="/writing" class="text-slate-600 hover:text-cyan-400 transition-colors">writing</a> — what I tried, what happened, and what it cost.
+      </p>
+    </div>
+
+  </div>
+</BaseLayout>

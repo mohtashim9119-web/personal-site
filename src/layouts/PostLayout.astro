@@ -1,0 +1,95 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags?: string[];
+}
+
+const { title, description, pubDate, updatedDate, tags = [] } = Astro.props;
+
+function fmtDate(d: Date) {
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="max-w-3xl mx-auto px-6 pt-14 pb-28">
+
+    <!-- Back link -->
+    <a
+      href="/writing"
+      class="inline-flex items-center gap-1.5 font-mono text-xs text-slate-600 hover:text-cyan-400 transition-colors mb-12 group"
+    >
+      <svg class="w-3 h-3 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+      </svg>
+      All writing
+    </a>
+
+    <!-- Post header -->
+    <header class="mb-14">
+      <div class="flex items-center gap-3 mb-5">
+        <time class="font-mono text-xs text-slate-600">{fmtDate(pubDate)}</time>
+        {updatedDate && (
+          <span class="font-mono text-xs text-slate-700">· Updated {fmtDate(updatedDate)}</span>
+        )}
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-black text-slate-100 leading-tight mb-5">
+        {title}
+      </h1>
+
+      <p class="text-lg text-slate-400 leading-relaxed border-l-2 border-cyan-400/40 pl-4">
+        {description}
+      </p>
+
+      {tags.length > 0 && (
+        <div class="mt-6 flex flex-wrap gap-2">
+          {tags.map(tag => (
+            <span class="font-mono text-[11px] text-slate-600 bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-md">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <!-- Divider -->
+    <div class="border-t border-slate-800/70 mb-14"></div>
+
+    <!-- Body -->
+    <div class="prose prose-invert max-w-none
+      prose-headings:font-black prose-headings:tracking-tight prose-headings:text-slate-100
+      prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+      prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+      prose-p:text-slate-400 prose-p:leading-[1.85] prose-p:my-6
+      prose-a:text-cyan-400 prose-a:font-medium prose-a:no-underline hover:prose-a:text-cyan-300 hover:prose-a:underline
+      prose-strong:text-slate-200 prose-strong:font-semibold
+      prose-em:text-slate-300 prose-em:italic
+      prose-code:text-cyan-300 prose-code:bg-slate-900 prose-code:border prose-code:border-slate-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-[0.85em] prose-code:before:content-none prose-code:after:content-none
+      prose-pre:bg-slate-900 prose-pre:border prose-pre:border-slate-800 prose-pre:rounded-xl prose-pre:shadow-lg
+      prose-blockquote:border-l-2 prose-blockquote:border-cyan-400/50 prose-blockquote:pl-5 prose-blockquote:not-italic prose-blockquote:text-slate-400
+      prose-ul:text-slate-400 prose-ol:text-slate-400
+      prose-li:marker:text-cyan-400/60
+      prose-hr:border-slate-800 prose-hr:my-12
+      prose-img:rounded-xl prose-img:border prose-img:border-slate-800">
+      <slot />
+    </div>
+
+    <!-- Post footer -->
+    <div class="mt-20 pt-8 border-t border-slate-800/70 flex items-center justify-between">
+      <a href="/writing" class="inline-flex items-center gap-1.5 font-mono text-xs text-slate-600 hover:text-cyan-400 transition-colors group">
+        <svg class="w-3 h-3 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+        </svg>
+        Back to writing
+      </a>
+      <p class="font-mono text-xs text-slate-700">mohtashim.</p>
+    </div>
+
+  </article>
+</BaseLayout>

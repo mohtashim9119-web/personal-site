@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Selection highlight */
+  ::selection {
+    background-color: rgba(34, 211, 238, 0.18);
+    color: #e2e8f0;
+  }
+
+  /* Thin custom scrollbar */
+  ::-webkit-scrollbar       { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: #020617; }
+  ::-webkit-scrollbar-thumb { background: #22d3ee; border-radius: 2px; }
+
+  /* Smooth anchor scrolling offset for sticky nav */
+  [id] { scroll-margin-top: 5rem; }
+
+  /* Body defaults */
+  body {
+    @apply bg-[#020617] text-slate-300 font-sans antialiased;
+    line-height: 1.75;
+  }
+}
+
+@layer utilities {
+  /* Gradient text */
+  .text-gradient {
+    background: linear-gradient(135deg, #22d3ee 0%, #818cf8 60%, #22d3ee 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+
+  /* Subtle page-section divider */
+  .section-rule {
+    @apply border-t border-slate-800/70;
+  }
+
+  /* Fade-up reveal (used with IntersectionObserver) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

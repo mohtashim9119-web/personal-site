@@ -1,0 +1,21 @@
+# Astro build output
+dist/
+.astro/
+
+# Node
+node_modules/
+
+# Logs
+npm-debug.log*
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
