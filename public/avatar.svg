@@ -1,0 +1,246 @@
+<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+
+    <!-- Background radial — dark slate, slightly lighter at top-centre -->
+    <radialGradient id="av-bg" cx="50%" cy="36%" r="60%">
+      <stop offset="0%"   stop-color="#0d1f3c"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+
+    <!-- Accent gradient: cyan → blue (used everywhere) -->
+    <linearGradient id="av-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+
+    <!-- Ambient glow behind the face -->
+    <radialGradient id="av-glow" cx="50%" cy="37%" r="42%">
+      <stop offset="0%"   stop-color="#22d3ee" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Eye gradient — slightly cooler centre -->
+    <radialGradient id="av-eye" cx="32%" cy="32%" r="65%">
+      <stop offset="0%"   stop-color="#67e8f9"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </radialGradient>
+
+    <!-- Clip to circle -->
+    <clipPath id="av-clip">
+      <circle cx="200" cy="200" r="190"/>
+    </clipPath>
+
+    <!-- Soft glow filter for eyes -->
+    <filter id="av-eye-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Glow filter for the face ring -->
+    <filter id="av-ring-glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+  </defs>
+
+  <!-- ════════════════════════════════════
+       BASE: background + ambient glow
+  ════════════════════════════════════ -->
+
+  <!-- Outer decorative ring (barely visible) -->
+  <circle cx="200" cy="200" r="196"
+          stroke="url(#av-accent)" stroke-width="0.6"
+          stroke-opacity="0.18" stroke-dasharray="3 7"/>
+
+  <!-- Filled background circle -->
+  <circle cx="200" cy="200" r="190" fill="url(#av-bg)"/>
+
+  <!-- Ambient face glow -->
+  <circle cx="200" cy="158" r="185" fill="url(#av-glow)"/>
+
+  <!-- ════════════════════════════════════
+       GRID OVERLAY (very faint)
+  ════════════════════════════════════ -->
+  <g clip-path="url(#av-clip)" opacity="0.055" stroke="#22d3ee" stroke-width="0.5">
+    <!-- Horizontal -->
+    <line x1="20" y1="130" x2="380" y2="130"/>
+    <line x1="20" y1="200" x2="380" y2="200"/>
+    <line x1="20" y1="270" x2="380" y2="270"/>
+    <!-- Vertical -->
+    <line x1="130" y1="20" x2="130" y2="380"/>
+    <line x1="200" y1="20" x2="200" y2="380"/>
+    <line x1="270" y1="20" x2="270" y2="380"/>
+  </g>
+
+  <!-- ════════════════════════════════════
+       SECONDARY INNER RINGS (depth)
+  ════════════════════════════════════ -->
+  <circle cx="200" cy="200" r="178"
+          stroke="url(#av-accent)" stroke-width="0.5" stroke-opacity="0.07"/>
+  <circle cx="200" cy="200" r="162"
+          stroke="url(#av-accent)" stroke-width="0.4" stroke-opacity="0.05"/>
+
+  <!-- ════════════════════════════════════
+       CORNER TECH BRACKETS
+  ════════════════════════════════════ -->
+  <!-- Top-left -->
+  <path d="M44 74 L44 44 L74 44"
+        stroke="url(#av-accent)" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.6"/>
+  <!-- Top-right -->
+  <path d="M356 74 L356 44 L326 44"
+        stroke="url(#av-accent)" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.6"/>
+  <!-- Bottom-left -->
+  <path d="M44 326 L44 356 L74 356"
+        stroke="url(#av-accent)" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.6"/>
+  <!-- Bottom-right -->
+  <path d="M356 326 L356 356 L326 356"
+        stroke="url(#av-accent)" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.6"/>
+
+  <!-- ════════════════════════════════════
+       CARDINAL POINT DOTS
+  ════════════════════════════════════ -->
+  <circle cx="200" cy="14"  r="3" fill="url(#av-accent)" fill-opacity="0.75"/>
+  <circle cx="386" cy="200" r="3" fill="url(#av-accent)" fill-opacity="0.75"/>
+  <circle cx="200" cy="386" r="3" fill="url(#av-accent)" fill-opacity="0.75"/>
+  <circle cx="14"  cy="200" r="3" fill="url(#av-accent)" fill-opacity="0.75"/>
+
+  <!-- 45° diagonal accent dots -->
+  <circle cx="66"  cy="66"  r="2" fill="url(#av-accent)" fill-opacity="0.35"/>
+  <circle cx="334" cy="66"  r="2" fill="url(#av-accent)" fill-opacity="0.35"/>
+  <circle cx="66"  cy="334" r="2" fill="url(#av-accent)" fill-opacity="0.35"/>
+  <circle cx="334" cy="334" r="2" fill="url(#av-accent)" fill-opacity="0.35"/>
+
+  <!-- ════════════════════════════════════
+       FIGURE: CIRCUIT TRACE (top antenna)
+  ════════════════════════════════════ -->
+
+  <!-- Vertical trace from head to top -->
+  <line x1="200" y1="48" x2="200" y2="86"
+        stroke="url(#av-accent)" stroke-width="1.2" stroke-opacity="0.45"/>
+
+  <!-- Apex dot with glow -->
+  <circle cx="200" cy="46" r="4"   fill="url(#av-accent)" fill-opacity="0.8"/>
+  <circle cx="200" cy="46" r="1.8" fill="white"            fill-opacity="0.45"/>
+
+  <!-- Horizontal branch at mid-trace -->
+  <line x1="182" y1="62" x2="218" y2="62"
+        stroke="url(#av-accent)" stroke-width="0.8" stroke-opacity="0.32"/>
+  <circle cx="180" cy="62" r="2.2" fill="url(#av-accent)" fill-opacity="0.5"/>
+  <circle cx="220" cy="62" r="2.2" fill="url(#av-accent)" fill-opacity="0.5"/>
+
+  <!-- ════════════════════════════════════
+       FIGURE: HEAD
+  ════════════════════════════════════ -->
+
+  <!-- Outer head ring with glow -->
+  <circle cx="200" cy="150" r="65"
+          stroke="url(#av-accent)" stroke-width="1.5" stroke-opacity="0.7"
+          filter="url(#av-ring-glow)"/>
+
+  <!-- Inner head ring (subtle) -->
+  <circle cx="200" cy="150" r="56"
+          stroke="url(#av-accent)" stroke-width="0.75" stroke-opacity="0.22"/>
+
+  <!-- ════════════════════════════════════
+       FIGURE: EYEBROWS
+  ════════════════════════════════════ -->
+  <path d="M170 129 Q181 124 192 128"
+        stroke="url(#av-accent)" stroke-width="1.6"
+        stroke-opacity="0.65" stroke-linecap="round"/>
+  <path d="M208 128 Q219 124 230 129"
+        stroke="url(#av-accent)" stroke-width="1.6"
+        stroke-opacity="0.65" stroke-linecap="round"/>
+
+  <!-- ════════════════════════════════════
+       FIGURE: EYES (with glow)
+  ════════════════════════════════════ -->
+
+  <!-- Left eye outer glow -->
+  <circle cx="181" cy="143" r="11" fill="#22d3ee" fill-opacity="0.08"/>
+  <!-- Left eye fill -->
+  <circle cx="181" cy="143" r="9"  fill="url(#av-eye)" filter="url(#av-eye-glow)"/>
+  <!-- Left pupil -->
+  <circle cx="181" cy="143" r="4.5" fill="#020617"/>
+  <!-- Left catchlight -->
+  <circle cx="183" cy="141" r="2"   fill="white" fill-opacity="0.55"/>
+
+  <!-- Right eye outer glow -->
+  <circle cx="219" cy="143" r="11" fill="#22d3ee" fill-opacity="0.08"/>
+  <!-- Right eye fill -->
+  <circle cx="219" cy="143" r="9"  fill="url(#av-eye)" filter="url(#av-eye-glow)"/>
+  <!-- Right pupil -->
+  <circle cx="219" cy="143" r="4.5" fill="#020617"/>
+  <!-- Right catchlight -->
+  <circle cx="221" cy="141" r="2"   fill="white" fill-opacity="0.55"/>
+
+  <!-- ════════════════════════════════════
+       FIGURE: NOSE + MOUTH
+  ════════════════════════════════════ -->
+
+  <!-- Nose bridge (minimal) -->
+  <line x1="200" y1="152" x2="200" y2="166"
+        stroke="url(#av-accent)" stroke-width="1.2"
+        stroke-opacity="0.38" stroke-linecap="round"/>
+
+  <!-- Nostril flare hints -->
+  <path d="M194 167 Q197 170 200 169 Q203 170 206 167"
+        stroke="url(#av-accent)" stroke-width="1"
+        stroke-opacity="0.3" stroke-linecap="round"/>
+
+  <!-- Mouth — subtle smile arc -->
+  <path d="M184 177 Q200 189 216 177"
+        stroke="url(#av-accent)" stroke-width="1.8"
+        stroke-opacity="0.6" stroke-linecap="round"/>
+
+  <!-- ════════════════════════════════════
+       FIGURE: BODY / SHOULDERS
+  ════════════════════════════════════ -->
+
+  <!-- Neck lines -->
+  <line x1="193" y1="213" x2="193" y2="220"
+        stroke="url(#av-accent)" stroke-width="1" stroke-opacity="0.3"/>
+  <line x1="207" y1="213" x2="207" y2="220"
+        stroke="url(#av-accent)" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- Clavicle / collar arc -->
+  <path d="M153 218 Q200 235 247 218"
+        stroke="url(#av-accent)" stroke-width="1.5"
+        stroke-opacity="0.5" stroke-linecap="round"/>
+
+  <!-- Left shoulder line down and out -->
+  <path d="M144 210 L78 274 L78 400"
+        stroke="url(#av-accent)" stroke-width="1.5"
+        stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Right shoulder line -->
+  <path d="M256 210 L322 274 L322 400"
+        stroke="url(#av-accent)" stroke-width="1.5"
+        stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Centre body dashed line -->
+  <line x1="200" y1="222" x2="200" y2="400"
+        stroke="url(#av-accent)" stroke-width="0.75"
+        stroke-opacity="0.17" stroke-dasharray="4 5"/>
+
+  <!-- Shoulder node dots -->
+  <circle cx="78"  cy="274" r="4" fill="url(#av-accent)" fill-opacity="0.45"/>
+  <circle cx="322" cy="274" r="4" fill="url(#av-accent)" fill-opacity="0.45"/>
+
+  <!-- ════════════════════════════════════
+       SCAN LINE (horizontal, very faint)
+  ════════════════════════════════════ -->
+  <line x1="18" y1="150" x2="382" y2="150"
+        stroke="#22d3ee" stroke-width="0.4" stroke-opacity="0.06"/>
+
+</svg>
