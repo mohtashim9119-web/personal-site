@@ -1,12 +1,557 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mohtashim's Personal Site</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohtashim — IT Professional & Internet Entrepreneur</title>
+  <meta name="description" content="Self-employed IT Professional and Internet Entrepreneur with 8+ years of experience. Making money online since 2018 — battle-tested, not textbook-trained." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Animated gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #22d3ee 0%, #818cf8 50%, #22d3ee 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* Background grid */
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(6,182,212,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6,182,212,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    /* Ambient blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    /* Glassmorphism nav */
+    .nav-glass {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    /* Card hover glow */
+    .card-glow {
+      transition: all 0.3s ease;
+    }
+    .card-glow:hover {
+      box-shadow: 0 0 28px rgba(6, 182, 212, 0.12);
+      transform: translateY(-2px);
+    }
+
+    /* Skill tag */
+    .skill-tag {
+      transition: all 0.2s ease;
+    }
+    .skill-tag:hover {
+      box-shadow: 0 0 16px rgba(6, 182, 212, 0.2);
+    }
+
+    /* Scroll indicator bounce */
+    @keyframes bounce-slow {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(6px); }
+    }
+    .bounce-slow { animation: bounce-slow 2s ease-in-out infinite; }
+
+    /* Pulse dot */
+    @keyframes pulse-ring {
+      0%   { transform: scale(1);   opacity: 1; }
+      100% { transform: scale(2.5); opacity: 0; }
+    }
+    .pulse-dot::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #34d399;
+      animation: pulse-ring 1.5s ease-out infinite;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar       { width: 5px; }
+    ::-webkit-scrollbar-track { background: #020617; }
+    ::-webkit-scrollbar-thumb { background: #22d3ee; border-radius: 3px; }
+
+    /* Section reveal fade */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
-<body>
-  <h1>Hi, I'm Mohtashim!</h1>
-  <p>Welcome to my personal website.</p>
+
+<body class="bg-[#020617] text-slate-200 font-sans antialiased overflow-x-hidden">
+
+  <!-- ════════════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════════ -->
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-glass bg-[#020617]/80 border-b border-slate-800/60">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#" class="font-mono text-lg font-semibold tracking-tight">
+        <span class="text-cyan-400">mohtashim</span><span class="text-slate-600">.</span><span class="text-slate-400">io</span>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+        <a href="#about"     class="hover:text-cyan-400 transition-colors duration-200">Journey</a>
+        <a href="#expertise" class="hover:text-cyan-400 transition-colors duration-200">Expertise</a>
+        <a href="#contact"   class="hover:text-cyan-400 transition-colors duration-200">Contact</a>
+      </div>
+
+      <!-- CTA -->
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 text-sm font-semibold bg-cyan-400/10 text-cyan-400 border border-cyan-400/25 rounded-full px-5 py-2 hover:bg-cyan-400/20 hover:border-cyan-400/50 transition-all duration-200">
+        Work With Me
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+
+      <!-- Mobile hamburger -->
+      <button onclick="document.getElementById('mob-menu').classList.toggle('hidden')" class="md:hidden p-2 text-slate-400 hover:text-slate-200 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mob-menu" class="hidden md:hidden border-t border-slate-800/60">
+      <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-4 text-sm font-medium text-slate-400">
+        <a href="#about"     onclick="document.getElementById('mob-menu').classList.add('hidden')" class="hover:text-cyan-400 transition-colors">Journey</a>
+        <a href="#expertise" onclick="document.getElementById('mob-menu').classList.add('hidden')" class="hover:text-cyan-400 transition-colors">Expertise</a>
+        <a href="#contact"   onclick="document.getElementById('mob-menu').classList.add('hidden')" class="hover:text-cyan-400 transition-colors">Contact</a>
+        <a href="#contact"   onclick="document.getElementById('mob-menu').classList.add('hidden')" class="mt-2 inline-flex items-center gap-2 bg-cyan-400/10 text-cyan-400 border border-cyan-400/25 rounded-full px-5 py-2 w-fit hover:bg-cyan-400/20 transition-all">Work With Me</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-20">
+
+    <!-- Ambient blobs -->
+    <div class="blob w-[500px] h-[500px] bg-cyan-500   top-0    -left-32"></div>
+    <div class="blob w-[400px] h-[400px] bg-violet-600 bottom-0 -right-20"></div>
+    <div class="blob w-[300px] h-[300px] bg-indigo-500 top-1/2  left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+
+    <!-- Grid overlay -->
+    <div class="absolute inset-0 bg-grid"></div>
+
+    <!-- Radial vignette -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,#020617_100%)]"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-4xl mx-auto text-center">
+
+      <!-- Status badge -->
+      <div class="inline-flex items-center gap-2.5 bg-slate-900/80 border border-slate-700/60 rounded-full px-4 py-2 mb-10 text-sm text-slate-400">
+        <span class="relative flex w-2 h-2">
+          <span class="pulse-dot absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full w-2 h-2 bg-emerald-400"></span>
+        </span>
+        Open to select projects & collaborations
+      </div>
+
+      <!-- Name headline -->
+      <h1 class="text-[clamp(3rem,10vw,6rem)] font-black tracking-tight leading-[1.05] mb-6">
+        <span class="text-slate-100 block">Hi, I'm</span>
+        <span class="gradient-text block">Mohtashim.</span>
+      </h1>
+
+      <!-- Title line -->
+      <p class="text-xl md:text-2xl text-slate-400 font-medium mb-5 max-w-3xl mx-auto leading-relaxed">
+        Self-Employed <span class="text-slate-200 font-semibold">IT Professional</span>
+        &amp;
+        <span class="text-slate-200 font-semibold">Internet Entrepreneur</span>
+      </p>
+
+      <!-- Tagline -->
+      <p class="text-base md:text-lg text-slate-500 mb-12 max-w-2xl mx-auto leading-relaxed">
+        <span class="text-cyan-400 font-semibold">8+ years</span> in the field.
+        Making money online since <span class="text-cyan-400 font-semibold">2018</span>.
+        Multiple businesses launched — some scaled massively, some crashed completely.
+        Every outcome taught me something no course ever could.
+      </p>
+
+      <!-- Stats bar -->
+      <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 mb-14">
+        <div class="text-center">
+          <div class="text-4xl font-black text-cyan-400 leading-none">8+</div>
+          <div class="text-[11px] text-slate-500 uppercase tracking-widest mt-1.5">Years in IT</div>
+        </div>
+        <div class="hidden sm:block w-px h-10 bg-slate-800"></div>
+        <div class="text-center">
+          <div class="text-4xl font-black text-violet-400 leading-none">2018</div>
+          <div class="text-[11px] text-slate-500 uppercase tracking-widest mt-1.5">Online Since</div>
+        </div>
+        <div class="hidden sm:block w-px h-10 bg-slate-800"></div>
+        <div class="text-center">
+          <div class="text-4xl font-black text-emerald-400 leading-none">Multi</div>
+          <div class="text-[11px] text-slate-500 uppercase tracking-widest mt-1.5">Businesses Built</div>
+        </div>
+        <div class="hidden sm:block w-px h-10 bg-slate-800"></div>
+        <div class="text-center">
+          <div class="text-4xl font-black text-rose-400 leading-none">0</div>
+          <div class="text-[11px] text-slate-500 uppercase tracking-widest mt-1.5">Theories Used</div>
+        </div>
+      </div>
+
+      <!-- CTA buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#about" class="inline-flex items-center justify-center gap-2 bg-cyan-400 text-[#020617] font-bold text-sm px-8 py-4 rounded-xl hover:bg-cyan-300 transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_0_32px_rgba(6,182,212,0.4)]">
+          Read My Story
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="#expertise" class="inline-flex items-center justify-center gap-2 bg-slate-800/80 text-slate-200 font-semibold text-sm px-8 py-4 rounded-xl border border-slate-700 hover:border-slate-500 hover:bg-slate-800 transition-all duration-200">
+          View Expertise
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-slate-700">
+      <span class="text-[10px] uppercase tracking-[0.2em]">Scroll</span>
+      <svg class="w-4 h-4 bounce-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       ABOUT / JOURNEY
+  ════════════════════════════════════════ -->
+  <section id="about" class="py-28 px-6 relative">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Section label -->
+      <div class="reveal mb-16">
+        <p class="font-mono text-cyan-400 text-xs uppercase tracking-[0.2em] mb-3">// 01 — My Journey</p>
+        <h2 class="text-4xl md:text-5xl font-black text-slate-100 leading-tight mb-6">
+          Battle-Tested,<br class="hidden sm:block"/>
+          Not Textbook-Trained.
+        </h2>
+        <p class="text-slate-400 text-lg max-w-2xl leading-relaxed">
+          I didn't learn entrepreneurship in a classroom. I learned it in the trenches — with real money on the line, real risk to absorb, and real consequences when things went sideways. Here's the unfiltered version.
+        </p>
+      </div>
+
+      <!-- Wins / Losses grid -->
+      <div class="grid lg:grid-cols-2 gap-6 mb-10 reveal">
+
+        <!-- The Wins -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 card-glow">
+          <div class="flex items-center gap-3 mb-7">
+            <div class="w-10 h-10 bg-emerald-400/10 border border-emerald-400/20 rounded-xl flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-emerald-400">The Wins</h3>
+              <p class="text-xs text-slate-600 mt-0.5">What worked, and what I built from it</p>
+            </div>
+          </div>
+          <ul class="space-y-5">
+            <li class="flex gap-3 text-slate-300 text-sm leading-relaxed">
+              <span class="text-emerald-400 shrink-0 mt-0.5 font-bold">▸</span>
+              <span>Built and scaled multiple profitable online businesses from scratch — generating consistent, real revenue across different niches and models.</span>
+            </li>
+            <li class="flex gap-3 text-slate-300 text-sm leading-relaxed">
+              <span class="text-emerald-400 shrink-0 mt-0.5 font-bold">▸</span>
+              <span>Established a solid freelance IT career serving international clients with infrastructure, networking, and security solutions that actually hold up.</span>
+            </li>
+            <li class="flex gap-3 text-slate-300 text-sm leading-relaxed">
+              <span class="text-emerald-400 shrink-0 mt-0.5 font-bold">▸</span>
+              <span>Survived and adapted through every major market shift since 2018 — while competitors folded, I pivoted and kept growing.</span>
+            </li>
+            <li class="flex gap-3 text-slate-300 text-sm leading-relaxed">
+              <span class="text-emerald-400 shrink-0 mt-0.5 font-bold">▸</span>
+              <span>Developed a sharp ability to spot digital opportunities early and move decisively — before the market prices them in.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- The Losses -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 card-glow">
+          <div class="flex items-center gap-3 mb-7">
+            <div class="w-10 h-10 bg-rose-400/10 border border-rose-400/20 rounded-xl flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-rose-400">The Losses</h3>
+              <p class="text-xs text-slate-600 mt-0.5">The crashes that made me sharper</p>
+            </div>
+          </div>
+          <ul class="space-y-5">
+            <li class="flex gap-3 text-slate-300 text-sm leading-relaxed">
+              <span class="text-rose-400 shrink-0 mt-0.5 font-bold">▸</span>
+              <span>Launched ventures that burned capital with nothing to show — and absorbed more real education from each failure than any success ever taught me.</span>
+            </li>
+            <li class="flex gap-3 text-slate-300 text-sm leading-relaxed">
+              <span class="text-rose-400 shrink-0 mt-0.5 font-bold">▸</span>
+              <span>Chased trends that evaporated overnight. Paid the price in time and money. Never made the same category of mistake twice.</span>
+            </li>
+            <li class="flex gap-3 text-slate-300 text-sm leading-relaxed">
+              <span class="text-rose-400 shrink-0 mt-0.5 font-bold">▸</span>
+              <span>Trusted the wrong partners. Absorbed hard lessons about vetting people, contracts, IP protection, and when to walk away.</span>
+            </li>
+            <li class="flex gap-3 text-slate-300 text-sm leading-relaxed">
+              <span class="text-rose-400 shrink-0 mt-0.5 font-bold">▸</span>
+              <span>Failed fast, cut losses faster, pivoted without ego. That mindset is the only reason I'm still in the game — and still building.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Philosophy callout -->
+      <div class="reveal relative bg-gradient-to-br from-cyan-400/5 via-transparent to-violet-500/5 border border-slate-700/60 rounded-2xl p-8 md:p-12 overflow-hidden">
+        <div class="absolute top-0 right-0 w-72 h-72 bg-cyan-500 opacity-[0.06] rounded-full blur-3xl pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-violet-600 opacity-[0.06] rounded-full blur-3xl pointer-events-none -translate-x-1/4 translate-y-1/4"></div>
+        <div class="relative z-10 max-w-3xl">
+          <p class="font-mono text-cyan-400 text-xs uppercase tracking-[0.2em] mb-5">// Philosophy</p>
+          <blockquote class="text-2xl md:text-3xl font-black text-slate-100 leading-snug mb-6">
+            "I don't consult from theory. I operate from
+            <span class="text-cyan-400">experience</span> —
+            including the hard-won kind that nobody puts on a resume."
+          </blockquote>
+          <p class="text-slate-400 text-base leading-relaxed">
+            Eight-plus years of hands-on IT work combined with six-plus years of active internet entrepreneurship gives me something genuinely rare: deep technical execution <em class="text-slate-300 not-italic font-medium">and</em> a proven track record of building, launching, and monetizing digital products. I don't just advise — I build. I don't just theorize — I ship.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       EXPERTISE
+  ════════════════════════════════════════ -->
+  <section id="expertise" class="py-28 px-6 bg-slate-900/20">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="reveal mb-16">
+        <p class="font-mono text-cyan-400 text-xs uppercase tracking-[0.2em] mb-3">// 02 — Skill Set</p>
+        <h2 class="text-4xl md:text-5xl font-black text-slate-100 leading-tight mb-6">
+          What I Actually Know<br class="hidden sm:block"/>
+          How to Do.
+        </h2>
+        <p class="text-slate-400 text-lg max-w-2xl leading-relaxed">
+          Not a list of buzzwords scraped from job boards. These are capabilities built through years of real-world application, broken systems, and shipping things that had to work.
+        </p>
+      </div>
+
+      <!-- ── IT & Infrastructure ── -->
+      <div class="reveal mb-14">
+        <div class="flex items-center gap-4 mb-6">
+          <p class="font-mono text-slate-500 text-xs uppercase tracking-[0.2em]">IT & Infrastructure</p>
+          <div class="flex-1 h-px bg-slate-800"></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          <!-- Cloud -->
+          <div class="group bg-slate-900 border border-slate-800 rounded-2xl p-6 card-glow hover:border-cyan-400/25">
+            <div class="w-11 h-11 bg-cyan-400/10 border border-cyan-400/15 rounded-xl flex items-center justify-center mb-5 group-hover:bg-cyan-400/20 group-hover:border-cyan-400/30 transition-all duration-300">
+              <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+            </div>
+            <h4 class="font-bold text-slate-100 mb-2 text-base">Cloud & Hosting</h4>
+            <p class="text-slate-500 text-sm leading-relaxed">AWS, Cloudflare, VPS management, server provisioning, CDN configuration, and scalable infrastructure deployment.</p>
+          </div>
+
+          <!-- Networking -->
+          <div class="group bg-slate-900 border border-slate-800 rounded-2xl p-6 card-glow hover:border-violet-400/25">
+            <div class="w-11 h-11 bg-violet-400/10 border border-violet-400/15 rounded-xl flex items-center justify-center mb-5 group-hover:bg-violet-400/20 group-hover:border-violet-400/30 transition-all duration-300">
+              <svg class="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+            </div>
+            <h4 class="font-bold text-slate-100 mb-2 text-base">Networking</h4>
+            <p class="text-slate-500 text-sm leading-relaxed">Network architecture, TCP/IP, DNS, firewalls, VPN setup, and enterprise-grade LAN/WAN configurations.</p>
+          </div>
+
+          <!-- Cybersecurity -->
+          <div class="group bg-slate-900 border border-slate-800 rounded-2xl p-6 card-glow hover:border-rose-400/25">
+            <div class="w-11 h-11 bg-rose-400/10 border border-rose-400/15 rounded-xl flex items-center justify-center mb-5 group-hover:bg-rose-400/20 group-hover:border-rose-400/30 transition-all duration-300">
+              <svg class="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            </div>
+            <h4 class="font-bold text-slate-100 mb-2 text-base">Cybersecurity</h4>
+            <p class="text-slate-500 text-sm leading-relaxed">Security hardening, threat assessment, access control, SSL/TLS management, and hands-on incident response.</p>
+          </div>
+
+          <!-- Sysadmin -->
+          <div class="group bg-slate-900 border border-slate-800 rounded-2xl p-6 card-glow hover:border-emerald-400/25">
+            <div class="w-11 h-11 bg-emerald-400/10 border border-emerald-400/15 rounded-xl flex items-center justify-center mb-5 group-hover:bg-emerald-400/20 group-hover:border-emerald-400/30 transition-all duration-300">
+              <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+            </div>
+            <h4 class="font-bold text-slate-100 mb-2 text-base">Systems Administration</h4>
+            <p class="text-slate-500 text-sm leading-relaxed">Linux &amp; Windows server admin, shell scripting, monitoring, backup strategies, and performance tuning.</p>
+          </div>
+
+          <!-- Web Dev -->
+          <div class="group bg-slate-900 border border-slate-800 rounded-2xl p-6 card-glow hover:border-blue-400/25">
+            <div class="w-11 h-11 bg-blue-400/10 border border-blue-400/15 rounded-xl flex items-center justify-center mb-5 group-hover:bg-blue-400/20 group-hover:border-blue-400/30 transition-all duration-300">
+              <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            </div>
+            <h4 class="font-bold text-slate-100 mb-2 text-base">Web Development</h4>
+            <p class="text-slate-500 text-sm leading-relaxed">HTML, CSS, JavaScript, WordPress, deployment pipelines, and performance optimization for real-world production sites.</p>
+          </div>
+
+          <!-- IT Consulting -->
+          <div class="group bg-slate-900 border border-slate-800 rounded-2xl p-6 card-glow hover:border-amber-400/25">
+            <div class="w-11 h-11 bg-amber-400/10 border border-amber-400/15 rounded-xl flex items-center justify-center mb-5 group-hover:bg-amber-400/20 group-hover:border-amber-400/30 transition-all duration-300">
+              <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <h4 class="font-bold text-slate-100 mb-2 text-base">IT Consulting</h4>
+            <p class="text-slate-500 text-sm leading-relaxed">End-to-end IT strategy, vendor evaluation, tech stack decisions, and SMB digital transformation advisory.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Online Business ── -->
+      <div class="reveal">
+        <div class="flex items-center gap-4 mb-6">
+          <p class="font-mono text-slate-500 text-xs uppercase tracking-[0.2em]">Online Business & Entrepreneurship</p>
+          <div class="flex-1 h-px bg-slate-800"></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 card-glow hover:border-violet-400/25">
+            <div class="text-violet-400 font-mono text-[11px] uppercase tracking-[0.15em] mb-3">E-Commerce</div>
+            <p class="text-slate-300 text-sm leading-relaxed">Product sourcing, store setup, conversion rate optimization, and scaling profitable online stores across multiple platforms.</p>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 card-glow hover:border-violet-400/25">
+            <div class="text-violet-400 font-mono text-[11px] uppercase tracking-[0.15em] mb-3">Digital Marketing</div>
+            <p class="text-slate-300 text-sm leading-relaxed">SEO, paid ads, email marketing funnels, and organic growth strategies that have been proven with real budget, not hypotheticals.</p>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 card-glow hover:border-violet-400/25">
+            <div class="text-violet-400 font-mono text-[11px] uppercase tracking-[0.15em] mb-3">Monetization</div>
+            <p class="text-slate-300 text-sm leading-relaxed">Affiliate marketing, SaaS models, service packaging, and building diversified income streams that don't rely on a single platform.</p>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 card-glow hover:border-violet-400/25">
+            <div class="text-violet-400 font-mono text-[11px] uppercase tracking-[0.15em] mb-3">Automation</div>
+            <p class="text-slate-300 text-sm leading-relaxed">Workflow automation, tool integration, and building systems designed to generate output — with or without your active involvement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       CONTACT
+  ════════════════════════════════════════ -->
+  <section id="contact" class="py-28 px-6 relative overflow-hidden">
+    <div class="blob w-96 h-96 bg-cyan-500   bottom-0 left-0  -translate-x-1/2 translate-y-1/2"></div>
+    <div class="blob w-80 h-80 bg-violet-600 top-0    right-0  translate-x-1/3 -translate-y-1/3"></div>
+    <div class="absolute inset-0 bg-grid"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#020617_80%)]"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto text-center">
+      <div class="reveal">
+        <p class="font-mono text-cyan-400 text-xs uppercase tracking-[0.2em] mb-4">// 03 — Get In Touch</p>
+        <h2 class="text-4xl md:text-5xl font-black text-slate-100 mb-6 leading-tight">
+          Let's Build <span class="gradient-text">Something Real.</span>
+        </h2>
+        <p class="text-slate-400 text-lg mb-14 leading-relaxed max-w-xl mx-auto">
+          Whether you need IT infrastructure that doesn't break, or a digital business strategy from someone who's actually done it — I'm open to the right conversations.
+        </p>
+      </div>
+
+      <!-- Contact cards -->
+      <div class="reveal grid sm:grid-cols-3 gap-4 mb-12">
+        <a href="mailto:hello@mohtashim.com" class="group bg-slate-900/80 border border-slate-800 rounded-2xl p-6 card-glow hover:border-cyan-400/30 text-center">
+          <div class="w-11 h-11 bg-cyan-400/10 border border-cyan-400/15 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-cyan-400/20 group-hover:border-cyan-400/30 transition-all duration-300">
+            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div class="text-[11px] text-slate-600 uppercase tracking-wider mb-1.5">Email</div>
+          <div class="text-slate-300 text-sm font-medium">hello@mohtashim.com</div>
+        </a>
+
+        <a href="https://linkedin.com/in/mohtashim" target="_blank" rel="noopener noreferrer" class="group bg-slate-900/80 border border-slate-800 rounded-2xl p-6 card-glow hover:border-cyan-400/30 text-center">
+          <div class="w-11 h-11 bg-cyan-400/10 border border-cyan-400/15 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-cyan-400/20 group-hover:border-cyan-400/30 transition-all duration-300">
+            <svg class="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div class="text-[11px] text-slate-600 uppercase tracking-wider mb-1.5">LinkedIn</div>
+          <div class="text-slate-300 text-sm font-medium">linkedin.com/in/mohtashim</div>
+        </a>
+
+        <a href="https://twitter.com/mohtashim" target="_blank" rel="noopener noreferrer" class="group bg-slate-900/80 border border-slate-800 rounded-2xl p-6 card-glow hover:border-cyan-400/30 text-center">
+          <div class="w-11 h-11 bg-cyan-400/10 border border-cyan-400/15 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-cyan-400/20 group-hover:border-cyan-400/30 transition-all duration-300">
+            <svg class="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.262 5.632 5.902-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </div>
+          <div class="text-[11px] text-slate-600 uppercase tracking-wider mb-1.5">Twitter / X</div>
+          <div class="text-slate-300 text-sm font-medium">@mohtashim</div>
+        </a>
+      </div>
+
+      <!-- Bottom note -->
+      <p class="reveal text-slate-600 text-sm">
+        Update the contact links above with your real handles before sharing this page.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="border-t border-slate-800/60 py-8 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
+      <span class="font-mono text-slate-600">© 2025 Mohtashim. All rights reserved.</span>
+      <span class="font-mono text-xs text-slate-700">
+        <span class="text-cyan-400/60">HTML</span> + <span class="text-cyan-400/60">Tailwind CSS</span>
+        <span class="mx-2 text-slate-800">·</span>
+        Deployed on <span class="text-cyan-400/60">Cloudflare Pages</span>
+      </span>
+    </div>
+  </footer>
+
+
+  <!-- ════════════════════════════════════════
+       SCROLL REVEAL SCRIPT
+  ════════════════════════════════════════ -->
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+      { threshold: 0.12 }
+    );
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+
 </body>
 </html>
