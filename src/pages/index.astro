@@ -6,466 +6,267 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Home"
   description="Building online since 2018. IT infrastructure, internet businesses, and the unfiltered reality of what works in the trenches."
 >
-  <style is:global>
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
-      50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(34,197,94,0); }
-    }
-    @keyframes float-node {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-    @keyframes glow-line {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.8; }
-    }
-    .live-dot {
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-    .node-float { animation: float-node 6s ease-in-out infinite; }
-    .node-float-2 { animation: float-node 8s ease-in-out infinite 1s; }
-    .node-float-3 { animation: float-node 7s ease-in-out infinite 2s; }
-    .glow-line { animation: glow-line 3s ease-in-out infinite; }
-    .glass {
-      background: rgba(15, 23, 42, 0.5);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(51, 65, 85, 0.6);
-    }
-    .glass-cyan {
-      background: rgba(8, 51, 68, 0.35);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(6, 182, 212, 0.25);
-      box-shadow: 0 0 40px rgba(6, 182, 212, 0.08), inset 0 1px 0 rgba(6, 182, 212, 0.1);
-    }
-    .glass-scar {
-      background: rgba(55, 15, 15, 0.3);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(239, 68, 68, 0.2);
-      box-shadow: 0 0 40px rgba(239, 68, 68, 0.06), inset 0 1px 0 rgba(239, 68, 68, 0.08);
-    }
-    .text-gradient {
-      background: linear-gradient(135deg, #06b6d4, #3b82f6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #06b6d4, #3b82f6);
-      transition: all 0.3s ease;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(6, 182, 212, 0.4);
-    }
-  </style>
 
-  <div class="bg-black text-white antialiased overflow-x-hidden">
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  HERO                                       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="max-w-3xl mx-auto px-6 pt-24 pb-20">
+    <p class="text-xs font-mono tracking-widest text-cloudy uppercase mb-6">— Personal Chronicle</p>
+    <h1 class="text-4xl md:text-5xl xl:text-6xl font-serif font-semibold leading-tight text-dark-accent dark:text-pampas mb-8">
+      Building online since&nbsp;2018.<br />
+      Some worked.<br />
+      Most didn't.<br />
+      <span class="text-crail">All of it counts.</span>
+    </h1>
+    <p class="text-lg leading-relaxed text-cloudy dark:text-cloudy max-w-xl mb-10">
+      8+ years in IT. Multiple ventures. No filtered highlight reel — just the raw accounting of what actually happens when you build real things on the internet.
+    </p>
 
-    <!-- ═══════════════════════════════════════════ -->
-    <!--  HERO & METRICS                             -->
-    <!-- ═══════════════════════════════════════════ -->
-    <section class="relative min-h-screen flex items-center px-6 md:px-12 lg:px-20 py-24 overflow-hidden">
+    <div class="flex flex-wrap gap-4">
+      <a
+        href="/writing"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-crail hover:bg-crail-dark text-white font-sans font-medium text-sm rounded transition-colors duration-200"
+      >
+        Read the writing
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+      <a
+        href="/journey"
+        class="inline-flex items-center gap-2 px-6 py-3 text-crail font-sans font-medium text-sm hover:text-crail-dark transition-colors duration-200"
+      >
+        The journey →
+      </a>
+    </div>
+  </section>
 
-      <!-- Background gradient orbs -->
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-        <!-- LEFT: Text -->
-        <div class="space-y-10">
-          <div class="space-y-6">
-            <p class="text-xs font-mono tracking-widest text-cyan-500/70 uppercase">— Personal Chronicle</p>
-            <h1 class="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight text-slate-100">
-              Building online since&nbsp;<span class="text-gradient">2018</span>.<br />
-              Some worked.<br />
-              Most didn't.<br />
-              All of it counts.
-            </h1>
-            <p class="text-slate-400 text-lg leading-relaxed max-w-lg">
-              8+ years in IT. Multiple ventures. No filtered highlight reel — just the raw accounting of what actually happens when you build real things on the internet.
-            </p>
-          </div>
-
-          <!-- Stats Row -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {[
-              { label: '8+ Years', sub: 'in IT' },
-              { label: 'Since 2018', sub: 'Online' },
-              { label: 'Multiple', sub: 'Ventures' },
-              { label: '0', sub: 'Theories Used' },
-            ].map(stat => (
-              <div class="glass rounded-xl p-4 text-center">
-                <div class="text-lg font-bold text-white">{stat.label}</div>
-                <div class="text-xs text-slate-500 mt-0.5">{stat.sub}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- RIGHT: Abstract Data-Node Network SVG -->
-        <div class="hidden lg:flex items-center justify-center">
-          <svg
-            viewBox="0 0 520 520"
-            class="w-full max-w-lg opacity-80"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <defs>
-              <radialGradient id="nodeGrad1" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
-              </radialGradient>
-              <radialGradient id="nodeGrad2" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
-              </radialGradient>
-              <radialGradient id="nodeGrad3" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.7"/>
-                <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
-              </radialGradient>
-              <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.05"/>
-                <stop offset="100%" stop-color="#000" stop-opacity="0"/>
-              </radialGradient>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-            </defs>
-
-            <!-- Background glow -->
-            <ellipse cx="260" cy="260" rx="240" ry="240" fill="url(#bgGlow)"/>
-
-            <!-- Connection lines -->
-            <g class="glow-line" stroke="#06b6d4" stroke-width="0.8" opacity="0.4">
-              <line x1="260" y1="260" x2="120" y2="140"/>
-              <line x1="260" y1="260" x2="400" y2="130"/>
-              <line x1="260" y1="260" x2="430" y2="310"/>
-              <line x1="260" y1="260" x2="340" y2="420"/>
-              <line x1="260" y1="260" x2="130" y2="390"/>
-              <line x1="260" y1="260" x2="90" y2="280"/>
-            </g>
-            <g stroke="#3b82f6" stroke-width="0.6" opacity="0.3">
-              <line x1="120" y1="140" x2="400" y2="130"/>
-              <line x1="400" y1="130" x2="430" y2="310"/>
-              <line x1="430" y1="310" x2="340" y2="420"/>
-              <line x1="340" y1="420" x2="130" y2="390"/>
-              <line x1="130" y1="390" x2="90" y2="280"/>
-              <line x1="90" y1="280" x2="120" y2="140"/>
-            </g>
-            <g stroke="#8b5cf6" stroke-width="0.5" opacity="0.2">
-              <line x1="120" y1="140" x2="340" y2="420"/>
-              <line x1="400" y1="130" x2="130" y2="390"/>
-              <line x1="430" y1="310" x2="90" y2="280"/>
-            </g>
-
-            <!-- Secondary connection lines -->
-            <g stroke="#06b6d4" stroke-width="0.5" opacity="0.2">
-              <line x1="200" y1="80" x2="120" y2="140"/>
-              <line x1="200" y1="80" x2="400" y2="130"/>
-              <line x1="460" y1="200" x2="430" y2="310"/>
-              <line x1="380" y1="470" x2="340" y2="420"/>
-              <line x1="80" y1="460" x2="130" y2="390"/>
-              <line x1="60" y1="180" x2="90" y2="280"/>
-            </g>
-
-            <!-- Central node -->
-            <g class="node-float">
-              <circle cx="260" cy="260" r="28" fill="url(#nodeGrad1)" filter="url(#glow)"/>
-              <circle cx="260" cy="260" r="16" fill="#0e7490" opacity="0.8"/>
-              <circle cx="260" cy="260" r="8" fill="#06b6d4"/>
-              <circle cx="256" cy="256" r="2.5" fill="white" opacity="0.6"/>
-            </g>
-
-            <!-- Outer nodes -->
-            <g class="node-float-2">
-              <circle cx="120" cy="140" r="18" fill="url(#nodeGrad2)" filter="url(#glow)"/>
-              <circle cx="120" cy="140" r="10" fill="#1d4ed8" opacity="0.8"/>
-              <circle cx="120" cy="140" r="5" fill="#3b82f6"/>
-            </g>
-            <g class="node-float">
-              <circle cx="400" cy="130" r="14" fill="url(#nodeGrad2)" filter="url(#glow)"/>
-              <circle cx="400" cy="130" r="8" fill="#1d4ed8" opacity="0.8"/>
-              <circle cx="400" cy="130" r="4" fill="#60a5fa"/>
-            </g>
-            <g class="node-float-3">
-              <circle cx="430" cy="310" r="16" fill="url(#nodeGrad3)" filter="url(#glow)"/>
-              <circle cx="430" cy="310" r="9" fill="#5b21b6" opacity="0.8"/>
-              <circle cx="430" cy="310" r="5" fill="#8b5cf6"/>
-            </g>
-            <g class="node-float-2">
-              <circle cx="340" cy="420" r="20" fill="url(#nodeGrad1)" filter="url(#glow)"/>
-              <circle cx="340" cy="420" r="12" fill="#0e7490" opacity="0.8"/>
-              <circle cx="340" cy="420" r="6" fill="#22d3ee"/>
-            </g>
-            <g class="node-float">
-              <circle cx="130" cy="390" r="13" fill="url(#nodeGrad2)" filter="url(#glow)"/>
-              <circle cx="130" cy="390" r="7" fill="#1d4ed8" opacity="0.7"/>
-              <circle cx="130" cy="390" r="4" fill="#93c5fd"/>
-            </g>
-            <g class="node-float-3">
-              <circle cx="90" cy="280" r="11" fill="url(#nodeGrad3)" filter="url(#glow)"/>
-              <circle cx="90" cy="280" r="6" fill="#5b21b6" opacity="0.7"/>
-              <circle cx="90" cy="280" r="3" fill="#a78bfa"/>
-            </g>
-
-            <!-- Tertiary small nodes -->
-            <g opacity="0.5" class="node-float-2">
-              <circle cx="200" cy="80" r="7" fill="url(#nodeGrad1)"/>
-              <circle cx="200" cy="80" r="3.5" fill="#06b6d4"/>
-            </g>
-            <g opacity="0.5" class="node-float">
-              <circle cx="460" cy="200" r="6" fill="url(#nodeGrad2)"/>
-              <circle cx="460" cy="200" r="3" fill="#60a5fa"/>
-            </g>
-            <g opacity="0.5" class="node-float-3">
-              <circle cx="380" cy="470" r="8" fill="url(#nodeGrad1)"/>
-              <circle cx="380" cy="470" r="4" fill="#22d3ee"/>
-            </g>
-            <g opacity="0.5" class="node-float">
-              <circle cx="80" cy="460" r="5" fill="url(#nodeGrad3)"/>
-              <circle cx="80" cy="460" r="2.5" fill="#a78bfa"/>
-            </g>
-            <g opacity="0.5" class="node-float-2">
-              <circle cx="60" cy="180" r="6" fill="url(#nodeGrad2)"/>
-              <circle cx="60" cy="180" r="3" fill="#93c5fd"/>
-            </g>
-
-            <!-- Micro data particles -->
-            <g fill="#06b6d4" opacity="0.6">
-              <rect x="185" y="193" width="3" height="3" rx="0.5" transform="rotate(15 186 194)"/>
-              <rect x="315" y="178" width="2.5" height="2.5" rx="0.5" transform="rotate(-10 316 179)"/>
-              <rect x="345" y="310" width="3" height="3" rx="0.5" transform="rotate(30 346 311)"/>
-              <rect x="195" y="340" width="2.5" height="2.5" rx="0.5" transform="rotate(-20 196 341)"/>
-            </g>
-          </svg>
-        </div>
-      </div>
-
-      <!-- Scroll indicator -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-        <div class="w-px h-10 bg-gradient-to-b from-transparent via-cyan-500 to-transparent"></div>
-        <span class="text-xs font-mono tracking-widest text-slate-500 uppercase">scroll</span>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════ -->
-    <!--  MANIFESTO                                  -->
-    <!-- ═══════════════════════════════════════════ -->
-    <section class="relative py-28 px-6 md:px-12 lg:px-20">
-      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/50 to-transparent pointer-events-none"></div>
-      <div class="relative max-w-4xl mx-auto">
-        <p class="text-xs font-mono tracking-widest text-cyan-500/60 uppercase mb-8">— Manifesto</p>
-        <blockquote class="text-2xl md:text-3xl lg:text-4xl font-light leading-relaxed text-slate-400">
-          I don't consult from theory.{' '}
-          <span class="text-slate-300">I operate from experience.</span>{' '}
-          Over the last 8+ years, I've built IT infrastructure, launched internet businesses, and watched ideas scale—and collapse.{' '}
-          <span class="text-slate-300">This is my unfiltered accounting of what actually works in the trenches.</span>
-        </blockquote>
-        <div class="mt-12 w-20 h-px bg-gradient-to-r from-cyan-500 to-transparent"></div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════ -->
-    <!--  THE BATTLEFIELD (Wins & Failures)          -->
-    <!-- ═══════════════════════════════════════════ -->
-    <section class="py-24 px-6 md:px-12 lg:px-20">
-      <div class="max-w-7xl mx-auto">
-        <p class="text-xs font-mono tracking-widest text-cyan-500/60 uppercase mb-4">— The Battlefield</p>
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-14">Wins & Scars</h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-          <!-- Win Card -->
-          <div class="glass-cyan rounded-2xl p-8 md:p-10 space-y-6 relative overflow-hidden">
-            <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"></div>
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center">
-                <svg class="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-                </svg>
-              </div>
-              <span class="text-xs font-mono tracking-widest text-cyan-400/70 uppercase">The Win</span>
-            </div>
-            <h3 class="text-2xl md:text-3xl font-bold text-white">The Scaling Win</h3>
-            <p class="text-slate-400 text-lg leading-relaxed">
-              Bootstrapped and scaled a high-availability infrastructure network to profitability within 14 months, serving global clients.
-            </p>
-            <div class="flex gap-2 flex-wrap">
-              <span class="text-xs bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full">Infrastructure</span>
-              <span class="text-xs bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full">Bootstrapped</span>
-              <span class="text-xs bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full">14 months</span>
-            </div>
-          </div>
-
-          <!-- Failure Card -->
-          <div class="glass-scar rounded-2xl p-8 md:p-10 space-y-6 relative overflow-hidden">
-            <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500/40 to-transparent"></div>
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
-                <svg class="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
-                </svg>
-              </div>
-              <span class="text-xs font-mono tracking-widest text-red-400/70 uppercase">The Scar</span>
-            </div>
-            <h3 class="text-2xl md:text-3xl font-bold text-white">The Spectacular Failure</h3>
-            <p class="text-slate-400 text-lg leading-relaxed">
-              Poured 8 months and significant capital into a consumer SaaS product that went to absolute zero. The lesson: <span class="text-slate-200 font-medium">Distribution always beats clean code.</span>
-            </p>
-            <div class="flex gap-2 flex-wrap">
-              <span class="text-xs bg-red-500/10 border border-red-500/20 text-red-400 px-3 py-1 rounded-full">SaaS</span>
-              <span class="text-xs bg-red-500/10 border border-red-500/20 text-red-400 px-3 py-1 rounded-full">8 months</span>
-              <span class="text-xs bg-red-500/10 border border-red-500/20 text-red-400 px-3 py-1 rounded-full">Hard lesson</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════ -->
-    <!--  DISPATCHES FROM THE TRENCHES               -->
-    <!-- ═══════════════════════════════════════════ -->
-    <section class="py-24 px-6 md:px-12 lg:px-20">
-      <div class="max-w-4xl mx-auto">
-        <p class="text-xs font-mono tracking-widest text-cyan-500/60 uppercase mb-4">— Latest Writing</p>
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-14">Dispatches from the Trenches</h2>
-
-        <div class="space-y-px">
-          {[
-            {
-              date: 'Mar 2024',
-              title: 'The distribution trap of 2024',
-              desc: 'Why every founder I know is building perfect products that no one finds — and what I learned the hard way about growth before code.',
-              tag: 'Distribution',
-            },
-            {
-              date: 'Jan 2024',
-              title: 'Why I stopped trading time for money',
-              desc: 'The exact moment I realized hourly billing was a ceiling, not a floor, and the mental shift that unlocked leverage.',
-              tag: 'Leverage',
-            },
-            {
-              date: 'Nov 2023',
-              title: 'Infrastructure lessons from a failed launch',
-              desc: 'Eight months of architecture decisions, what held up and what collapsed under real-world load. A technical post-mortem.',
-              tag: 'Infrastructure',
-            },
-          ].map((post, i) => (
-            <article class="group glass rounded-xl p-6 md:p-8 flex flex-col sm:flex-row gap-6 items-start hover:border-slate-700 transition-all duration-300 cursor-pointer">
-              <div class="shrink-0 w-24 text-right hidden sm:block">
-                <span class="text-xs font-mono text-slate-600">{post.date}</span>
-              </div>
-              <div class="w-px bg-slate-800 self-stretch hidden sm:block group-hover:bg-cyan-500/40 transition-colors duration-300"></div>
-              <div class="flex-1 space-y-2">
-                <div class="flex items-center gap-3 flex-wrap">
-                  <h3 class="text-lg font-semibold text-slate-100 group-hover:text-cyan-400 transition-colors duration-300">{post.title}</h3>
-                  <span class="text-xs bg-slate-800 text-slate-500 px-2 py-0.5 rounded-full border border-slate-700">{post.tag}</span>
-                </div>
-                <p class="text-slate-500 text-sm leading-relaxed">{post.desc}</p>
-                <span class="text-xs font-mono text-cyan-600 group-hover:text-cyan-400 transition-colors duration-300">Read more →</span>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════ -->
-    <!--  CURRENTLY BUILDING (Live Status)           -->
-    <!-- ═══════════════════════════════════════════ -->
-    <section class="py-16 px-6 md:px-12 lg:px-20">
-      <div class="max-w-7xl mx-auto">
-        <div class="glass rounded-2xl px-8 md:px-12 py-8 flex flex-col sm:flex-row items-start sm:items-center gap-6 relative overflow-hidden">
-          <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/3 via-transparent to-blue-600/3 pointer-events-none"></div>
-          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
-
-          <div class="flex items-center gap-3 shrink-0">
-            <div
-              class="live-dot w-3 h-3 rounded-full bg-green-500 shrink-0"
-              role="img"
-              aria-label="Live status"
-            ></div>
-            <span class="text-xs font-mono tracking-widest text-green-400 uppercase">Live Status</span>
-          </div>
-
-          <div class="w-px h-8 bg-slate-800 hidden sm:block"></div>
-
-          <p class="text-slate-300 text-base md:text-lg leading-relaxed">
-            Currently hyper-focused on scaling high-availability networks and writing about the reality of internet business.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════ -->
-    <!--  FINAL CTA                                  -->
-    <!-- ═══════════════════════════════════════════ -->
-    <section class="relative py-32 px-6 md:px-12 lg:px-20 overflow-hidden">
-      <!-- Background -->
-      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/80 to-slate-950 pointer-events-none"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-cyan-500/4 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="relative max-w-4xl mx-auto text-center space-y-10">
-        <div class="space-y-4">
-          <p class="text-xs font-mono tracking-widest text-cyan-500/60 uppercase">— Let's talk</p>
-          <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-            Let's build something <span class="text-gradient">real</span>.
-          </h2>
-        </div>
-
-        <p class="text-slate-400 text-lg max-w-xl mx-auto">
-          No fluff, no buzzwords. If you're working on something serious in IT infrastructure or internet business, I'm interested.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
-          <a
-            href="mailto:hello@example.com"
-            class="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white text-base"
-          >
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-            </svg>
-            Email Me
-          </a>
-
-          <div class="flex items-center gap-6">
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-slate-500 hover:text-slate-300 transition-colors duration-200 text-sm font-mono flex items-center gap-2"
-            >
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.261 5.636 5.903-5.636zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-              Twitter
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-slate-500 hover:text-slate-300 transition-colors duration-200 text-sm font-mono flex items-center gap-2"
-            >
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-              LinkedIn
-            </a>
-          </div>
-        </div>
-
-        <!-- Footer note -->
-        <p class="text-slate-700 text-xs font-mono pt-8 border-t border-slate-900">
-          © {new Date().getFullYear()} — Built with intent, not templates.
-        </p>
-      </div>
-    </section>
-
+  <!-- Divider -->
+  <div class="max-w-3xl mx-auto px-6">
+    <hr class="border-cloudy/30 dark:border-cloudy/15" />
   </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  STATS ROW                                  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="max-w-3xl mx-auto px-6 py-14">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-px bg-cloudy/20 dark:bg-cloudy/10 border border-cloudy/30 dark:border-cloudy/15 rounded">
+      {[
+        { label: '8+ Years', sub: 'in IT' },
+        { label: 'Since 2018', sub: 'Online' },
+        { label: 'Multiple', sub: 'Ventures' },
+        { label: '0', sub: 'Theories Used' },
+      ].map(stat => (
+        <div class="bg-warm-white dark:bg-dark-bg px-6 py-6 text-center">
+          <div class="text-lg font-serif font-semibold text-dark-accent dark:text-pampas">{stat.label}</div>
+          <div class="text-xs font-mono text-cloudy mt-1 uppercase tracking-wide">{stat.sub}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="max-w-3xl mx-auto px-6">
+    <hr class="border-cloudy/30 dark:border-cloudy/15" />
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  MANIFESTO                                  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="max-w-3xl mx-auto px-6 py-20">
+    <p class="text-xs font-mono tracking-widest text-cloudy uppercase mb-8">— Manifesto</p>
+    <blockquote class="text-2xl md:text-3xl font-serif font-medium leading-relaxed text-dark-accent dark:text-pampas">
+      I don't consult from theory.{' '}
+      <span class="text-cloudy dark:text-cloudy">I operate from experience.</span>{' '}
+      Over the last 8+ years, I've built IT infrastructure, launched internet businesses, and watched ideas scale — and collapse.{' '}
+      <span class="italic">This is my unfiltered accounting of what actually works in the trenches.</span>
+    </blockquote>
+    <div class="mt-10 w-12 h-0.5 bg-crail"></div>
+  </section>
+
+  <!-- Divider -->
+  <div class="max-w-3xl mx-auto px-6">
+    <hr class="border-cloudy/30 dark:border-cloudy/15" />
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  WINS & SCARS                               -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="max-w-3xl mx-auto px-6 py-20">
+    <p class="text-xs font-mono tracking-widest text-cloudy uppercase mb-4">— The Battlefield</p>
+    <h2 class="text-3xl font-serif font-semibold text-dark-accent dark:text-pampas mb-12">Wins &amp; Scars</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Win Card -->
+      <div class="bg-pampas dark:bg-dark-bg-alt border border-cloudy/30 dark:border-cloudy/15 rounded p-8 space-y-5">
+        <div class="flex items-center gap-3">
+          <div class="w-7 h-7 rounded-full bg-crail/10 flex items-center justify-center shrink-0">
+            <svg class="w-3.5 h-3.5 text-crail" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <span class="text-xs font-mono tracking-widest text-crail uppercase">The Win</span>
+        </div>
+        <h3 class="text-xl font-serif font-semibold text-dark-accent dark:text-pampas">The Scaling Win</h3>
+        <p class="text-base leading-relaxed text-cloudy dark:text-cloudy">
+          Bootstrapped and scaled a high-availability infrastructure network to profitability within 14 months, serving global clients.
+        </p>
+        <div class="flex gap-2 flex-wrap">
+          <span class="text-xs border border-crail/30 text-crail px-3 py-1 rounded-full">Infrastructure</span>
+          <span class="text-xs border border-crail/30 text-crail px-3 py-1 rounded-full">Bootstrapped</span>
+          <span class="text-xs border border-crail/30 text-crail px-3 py-1 rounded-full">14 months</span>
+        </div>
+      </div>
+
+      <!-- Scar Card -->
+      <div class="bg-pampas dark:bg-dark-bg-alt border border-cloudy/30 dark:border-cloudy/15 rounded p-8 space-y-5">
+        <div class="flex items-center gap-3">
+          <div class="w-7 h-7 rounded-full bg-cloudy/20 flex items-center justify-center shrink-0">
+            <svg class="w-3.5 h-3.5 text-cloudy" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+            </svg>
+          </div>
+          <span class="text-xs font-mono tracking-widest text-cloudy uppercase">The Scar</span>
+        </div>
+        <h3 class="text-xl font-serif font-semibold text-dark-accent dark:text-pampas">The Spectacular Failure</h3>
+        <p class="text-base leading-relaxed text-cloudy dark:text-cloudy">
+          Poured 8 months and significant capital into a consumer SaaS product that went to absolute zero. The lesson: <span class="text-dark-accent dark:text-pampas font-medium">Distribution always beats clean code.</span>
+        </p>
+        <div class="flex gap-2 flex-wrap">
+          <span class="text-xs border border-cloudy/40 text-cloudy px-3 py-1 rounded-full">SaaS</span>
+          <span class="text-xs border border-cloudy/40 text-cloudy px-3 py-1 rounded-full">8 months</span>
+          <span class="text-xs border border-cloudy/40 text-cloudy px-3 py-1 rounded-full">Hard lesson</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="max-w-3xl mx-auto px-6">
+    <hr class="border-cloudy/30 dark:border-cloudy/15" />
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  DISPATCHES                                 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="max-w-3xl mx-auto px-6 py-20">
+    <p class="text-xs font-mono tracking-widest text-cloudy uppercase mb-4">— Latest Writing</p>
+    <h2 class="text-3xl font-serif font-semibold text-dark-accent dark:text-pampas mb-12">Dispatches from the Trenches</h2>
+
+    <div class="divide-y divide-cloudy/20 dark:divide-cloudy/10">
+      {[
+        {
+          date: 'Mar 2024',
+          title: 'The distribution trap of 2024',
+          desc: 'Why every founder I know is building perfect products that no one finds — and what I learned the hard way about growth before code.',
+          tag: 'Distribution',
+        },
+        {
+          date: 'Jan 2024',
+          title: 'Why I stopped trading time for money',
+          desc: 'The exact moment I realized hourly billing was a ceiling, not a floor, and the mental shift that unlocked leverage.',
+          tag: 'Leverage',
+        },
+        {
+          date: 'Nov 2023',
+          title: 'Infrastructure lessons from a failed launch',
+          desc: 'Eight months of architecture decisions, what held up and what collapsed under real-world load. A technical post-mortem.',
+          tag: 'Infrastructure',
+        },
+      ].map((post) => (
+        <article class="group py-8 flex flex-col sm:flex-row gap-6 items-start cursor-pointer">
+          <div class="shrink-0 w-20 hidden sm:block pt-1">
+            <span class="text-xs font-mono text-cloudy">{post.date}</span>
+          </div>
+          <div class="flex-1 space-y-2">
+            <div class="flex items-baseline gap-3 flex-wrap">
+              <h3 class="text-lg font-serif font-semibold text-dark-accent dark:text-pampas group-hover:text-crail transition-colors duration-200">{post.title}</h3>
+              <span class="text-xs font-mono border border-cloudy/30 text-cloudy px-2 py-0.5 rounded-full">{post.tag}</span>
+            </div>
+            <p class="text-sm leading-relaxed text-cloudy">{post.desc}</p>
+            <span class="text-xs font-mono text-crail group-hover:text-crail-dark transition-colors duration-200">Read more →</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="max-w-3xl mx-auto px-6">
+    <hr class="border-cloudy/30 dark:border-cloudy/15" />
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  LIVE STATUS                                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="max-w-3xl mx-auto px-6 py-12">
+    <div class="bg-pampas dark:bg-dark-bg-alt border border-cloudy/30 dark:border-cloudy/15 rounded px-8 py-6 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+      <div class="flex items-center gap-3 shrink-0">
+        <div class="w-2.5 h-2.5 rounded-full bg-crail shrink-0"></div>
+        <span class="text-xs font-mono tracking-widest text-crail uppercase">Now</span>
+      </div>
+      <div class="w-px h-6 bg-cloudy/30 hidden sm:block"></div>
+      <p class="text-base leading-relaxed text-dark-accent dark:text-pampas">
+        Currently hyper-focused on scaling high-availability networks and writing about the reality of internet business.
+      </p>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="max-w-3xl mx-auto px-6">
+    <hr class="border-cloudy/30 dark:border-cloudy/15" />
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  CTA                                        -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="max-w-3xl mx-auto px-6 py-24 text-center">
+    <p class="text-xs font-mono tracking-widest text-cloudy uppercase mb-6">— Let's talk</p>
+    <h2 class="text-4xl md:text-5xl font-serif font-semibold text-dark-accent dark:text-pampas mb-6 leading-tight">
+      Let's build something real.
+    </h2>
+    <p class="text-lg text-cloudy max-w-md mx-auto mb-10">
+      No fluff, no buzzwords. If you're working on something serious in IT infrastructure or internet business, I'm interested.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
+      <a
+        href="mailto:hello@example.com"
+        class="inline-flex items-center gap-2 px-8 py-3.5 bg-crail hover:bg-crail-dark text-white font-sans font-medium text-sm rounded transition-colors duration-200"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        Email Me
+      </a>
+
+      <div class="flex items-center gap-6">
+        <a
+          href="https://twitter.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-cloudy hover:text-crail transition-colors duration-200 text-sm font-mono flex items-center gap-2"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.261 5.636 5.903-5.636zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          Twitter
+        </a>
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-cloudy hover:text-crail transition-colors duration-200 text-sm font-mono flex items-center gap-2"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>

@@ -32,7 +32,7 @@ const path = Astro.url.pathname;
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fira+Code:wght@400;500;600&display=swap"
     rel="stylesheet"
   />
 
@@ -61,25 +61,22 @@ const path = Astro.url.pathname;
   Body: light-mode base classes, dark: variants flip them.
   transition-colors so theme changes feel smooth.
 -->
-<body class="flex flex-col min-h-screen
-             bg-slate-50  dark:bg-[#020617]
-             text-slate-700 dark:text-slate-300
-             transition-colors duration-200">
+<body class="flex flex-col min-h-screen transition-colors duration-200">
 
   <!-- ═══════════════════════════ NAV ═══════════════════════════ -->
   <header class="sticky top-0 z-50
-                 border-b border-slate-200/80 dark:border-slate-800/60
-                 bg-white/90 dark:bg-[#020617]/90
-                 backdrop-blur-md transition-colors duration-200">
+                 border-b border-cloudy/30 dark:border-cloudy/10
+                 bg-warm-white/95 dark:bg-dark-bg/95
+                 transition-colors duration-200">
     <nav class="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
 
       <!-- Wordmark -->
       <a href="/"
-         class="font-mono text-sm font-semibold tracking-tight
-                text-slate-700 dark:text-slate-300
-                hover:text-cyan-600 dark:hover:text-cyan-400
+         class="font-serif text-base font-semibold tracking-tight
+                text-dark-accent dark:text-pampas
+                hover:text-crail dark:hover:text-crail
                 transition-colors duration-200">
-        mohtashim<span class="text-cyan-600 dark:text-cyan-400">.</span>
+        mohtashim<span class="text-crail">.</span>
       </a>
 
       <!-- Desktop links + theme toggle -->
@@ -87,10 +84,10 @@ const path = Astro.url.pathname;
         {navLinks.map(link => (
           <a
             href={link.href}
-            class={`text-sm transition-colors duration-200 ${
+            class={`text-sm font-sans transition-colors duration-200 ${
               path === link.href || path.startsWith(link.href + '/')
-                ? 'text-cyan-600 dark:text-cyan-400 font-semibold'
-                : 'text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-200'
+                ? 'text-crail font-semibold'
+                : 'text-cloudy dark:text-cloudy hover:text-dark-accent dark:hover:text-pampas'
             }`}
           >
             {link.label}
@@ -98,7 +95,7 @@ const path = Astro.url.pathname;
         ))}
 
         <!-- Theme toggle -->
-        <div class="pl-3 border-l border-slate-200 dark:border-slate-800">
+        <div class="pl-3 border-l border-cloudy/30 dark:border-cloudy/20">
           <ThemeToggle />
         </div>
       </div>
@@ -109,8 +106,8 @@ const path = Astro.url.pathname;
         <button
           id="menu-toggle"
           class="p-1.5 -mr-1.5 rounded-lg
-                 text-slate-500 hover:text-slate-900 dark:hover:text-slate-200
-                 hover:bg-slate-100 dark:hover:bg-slate-800/50
+                 text-cloudy hover:text-dark-accent dark:hover:text-pampas
+                 hover:bg-soft-grey dark:hover:bg-dark-bg-alt
                  transition-all duration-200"
           aria-label="Toggle menu"
           aria-expanded="false"
@@ -127,16 +124,16 @@ const path = Astro.url.pathname;
 
     <!-- Mobile drawer -->
     <div id="mobile-menu"
-         class="hidden sm:hidden border-t border-slate-200/80 dark:border-slate-800/60
+         class="hidden sm:hidden border-t border-cloudy/30 dark:border-cloudy/10
                 transition-colors duration-200">
       <div class="max-w-3xl mx-auto px-6 py-5 flex flex-col gap-5">
         {navLinks.map(link => (
           <a
             href={link.href}
-            class={`text-sm transition-colors duration-200 ${
+            class={`text-sm font-sans transition-colors duration-200 ${
               path === link.href || path.startsWith(link.href + '/')
-                ? 'text-cyan-600 dark:text-cyan-400 font-semibold'
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                ? 'text-crail font-semibold'
+                : 'text-cloudy dark:text-cloudy hover:text-dark-accent dark:hover:text-pampas'
             }`}
           >
             {link.label}
@@ -152,18 +149,18 @@ const path = Astro.url.pathname;
   </main>
 
   <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
-  <footer class="border-t border-slate-200/80 dark:border-slate-800/60
+  <footer class="border-t border-cloudy/30 dark:border-cloudy/10
                  py-12 px-6 mt-10 transition-colors duration-200">
     <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
       <div>
-        <p class="font-mono text-xs text-slate-500 dark:text-slate-600">
+        <p class="font-mono text-xs text-cloudy dark:text-cloudy/60">
           Mohtashim · IT Professional & Internet Entrepreneur
         </p>
-        <p class="font-mono text-xs text-slate-400 dark:text-slate-700 mt-1">
+        <p class="font-mono text-xs text-cloudy/60 dark:text-cloudy/40 mt-1">
           Writing from experience, not theory. Since 2018.
         </p>
       </div>
-      <p class="font-mono text-xs text-slate-300 dark:text-slate-800">
+      <p class="font-mono text-xs text-cloudy/50 dark:text-cloudy/30">
         © {new Date().getFullYear()}
       </p>
     </div>

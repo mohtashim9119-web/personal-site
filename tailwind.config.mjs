@@ -6,10 +6,20 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['"Lora"', 'Georgia', 'serif'],
         mono: ['"Fira Code"', 'monospace'],
       },
       colors: {
         accent: '#22d3ee',
+        crail: '#C15F3C',
+        'crail-dark': '#A14A2F',
+        pampas: '#F4F3EE',
+        cloudy: '#B1ADA1',
+        'warm-white': '#faf9f5',
+        'soft-grey': '#e8e6dc',
+        'dark-accent': '#141413',
+        'dark-bg': '#1a1815',
+        'dark-bg-alt': '#201d18',
       },
       typography: ({ theme }) => ({
         invert: {

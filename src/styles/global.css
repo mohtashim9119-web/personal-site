@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-warm-white text-dark-accent dark:bg-dark-bg dark:text-pampas transition-colors duration-200;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
