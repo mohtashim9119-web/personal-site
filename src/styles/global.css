@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand colors */
+  --color-crail: #C15F3C;
+  --color-crail-dark: #A14A2F;
+  --color-pampas: #F4F3EE;
+  --color-cloudy: #B1ADA1;
+  --color-warm-white: #faf9f5;
+  --color-soft-grey: #e8e6dc;
+  --color-dark-accent: #141413;
+  --color-dark-bg: #1a1815;
+  --color-dark-bg-alt: #201d18;
+
+  /* Serif font override */
+  --font-serif: "Lora", Georgia, serif;
+}
+
 @layer base {
   body {
     @apply bg-warm-white text-dark-accent dark:bg-dark-bg dark:text-pampas transition-colors duration-200;
